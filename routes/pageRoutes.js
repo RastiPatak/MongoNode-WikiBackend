@@ -45,7 +45,7 @@ router.get('/', async (req, res) => {
     const { name } = req.query;
     const filter = name ? { name: new RegExp(name, 'i') } : {};
     try {
-        const pages = await Page.find(filter);
+        const pages = await Page.find(filter).limit(20);
         res.send(pages);
     } catch (error) {
         res.status(500).send(error);
