@@ -42,10 +42,11 @@ router.delete('/:id', async (req, res) => {
 
 // Get pages by name
 router.get('/', async (req, res) => {
-    const { name } = req.query;
+    const { name, limit } = req.query;
     const filter = name ? { name: new RegExp(name, 'i') } : {};
+    const limitValue = parseInt(limit) || 10;
     try {
-        const pages = await Page.find(filter).limit(20);
+        const pages = await Page.find(filter).limit(limitValue);
         res.send(pages);
     } catch (error) {
         res.status(500).send(error);
