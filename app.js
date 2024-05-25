@@ -2,11 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const pageRoutes = require('./routes/pageRoutes');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/pages', pageRoutes);
 
